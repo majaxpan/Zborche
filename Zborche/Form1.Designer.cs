@@ -70,6 +70,7 @@
             lblInfo = new Label();
             lblStatus = new Label();
             tbInfo = new TextBox();
+            lblTemp = new Label();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -455,11 +456,21 @@
             tbInfo.Size = new Size(358, 27);
             tbInfo.TabIndex = 13;
             // 
+            // lblTemp
+            // 
+            lblTemp.AutoSize = true;
+            lblTemp.Location = new Point(7, 9);
+            lblTemp.Name = "lblTemp";
+            lblTemp.Size = new Size(50, 20);
+            lblTemp.TabIndex = 14;
+            lblTemp.Text = "label1";
+            // 
             // Zborche
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(433, 499);
+            Controls.Add(lblTemp);
             Controls.Add(tbInfo);
             Controls.Add(lblStatus);
             Controls.Add(lblInfo);
@@ -534,5 +545,6 @@
         private Label lblInfo;
         private Label lblStatus;
         private TextBox tbInfo;
+        private Label lblTemp;
     }
 }
