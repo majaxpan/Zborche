@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Zborche));
             lblGameDesc = new Label();
             o2b2 = new TextBox();
             o2b1 = new TextBox();
@@ -71,22 +72,24 @@
             lblStatus = new Label();
             tbInfo = new TextBox();
             lblTemp = new Label();
+            pictureBox1 = new PictureBox();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblGameDesc
             // 
             lblGameDesc.AutoSize = true;
-            lblGameDesc.Location = new Point(136, 9);
+            lblGameDesc.Location = new Point(258, 444);
             lblGameDesc.Name = "lblGameDesc";
-            lblGameDesc.Size = new Size(136, 20);
+            lblGameDesc.Size = new Size(92, 20);
             lblGameDesc.TabIndex = 1;
-            lblGameDesc.Text = "Погоди го зборот:";
+            lblGameDesc.Text = "Внеси збор:";
             // 
             // o2b2
             // 
@@ -135,7 +138,7 @@
             groupBox2.Controls.Add(o2b3);
             groupBox2.Controls.Add(o2b1);
             groupBox2.Controls.Add(o2b2);
-            groupBox2.Location = new Point(114, 89);
+            groupBox2.Location = new Point(211, 158);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(192, 51);
             groupBox2.TabIndex = 7;
@@ -189,7 +192,7 @@
             groupBox3.Controls.Add(o3b3);
             groupBox3.Controls.Add(o3b1);
             groupBox3.Controls.Add(o3b2);
-            groupBox3.Location = new Point(114, 146);
+            groupBox3.Location = new Point(211, 215);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(192, 51);
             groupBox3.TabIndex = 7;
@@ -243,7 +246,7 @@
             groupBox4.Controls.Add(o4b3);
             groupBox4.Controls.Add(o4b1);
             groupBox4.Controls.Add(o4b2);
-            groupBox4.Location = new Point(114, 203);
+            groupBox4.Location = new Point(211, 272);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(192, 51);
             groupBox4.TabIndex = 7;
@@ -297,7 +300,7 @@
             groupBox5.Controls.Add(o5b3);
             groupBox5.Controls.Add(o5b1);
             groupBox5.Controls.Add(o5b2);
-            groupBox5.Location = new Point(114, 260);
+            groupBox5.Location = new Point(211, 329);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(192, 51);
             groupBox5.TabIndex = 7;
@@ -351,7 +354,7 @@
             groupBox6.Controls.Add(o6b3);
             groupBox6.Controls.Add(o6b1);
             groupBox6.Controls.Add(o6b2);
-            groupBox6.Location = new Point(114, 317);
+            groupBox6.Location = new Point(211, 386);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(192, 51);
             groupBox6.TabIndex = 7;
@@ -360,9 +363,9 @@
             // 
             // submit
             // 
-            submit.Location = new Point(147, 422);
+            submit.Location = new Point(240, 500);
             submit.Name = "submit";
-            submit.Size = new Size(127, 33);
+            submit.Size = new Size(136, 33);
             submit.TabIndex = 8;
             submit.Text = "Испрати";
             submit.UseVisualStyleBackColor = true;
@@ -415,7 +418,7 @@
             groupBox1.Controls.Add(o1b3);
             groupBox1.Controls.Add(o1b1);
             groupBox1.Controls.Add(o1b2);
-            groupBox1.Location = new Point(114, 32);
+            groupBox1.Location = new Point(211, 101);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(192, 51);
             groupBox1.TabIndex = 6;
@@ -424,16 +427,16 @@
             // 
             // tbTryWord
             // 
-            tbTryWord.Location = new Point(147, 389);
+            tbTryWord.Location = new Point(240, 467);
             tbTryWord.MaxLength = 5;
             tbTryWord.Name = "tbTryWord";
-            tbTryWord.Size = new Size(127, 27);
+            tbTryWord.Size = new Size(136, 27);
             tbTryWord.TabIndex = 10;
             // 
             // lblInfo
             // 
             lblInfo.AutoSize = true;
-            lblInfo.Location = new Point(73, 470);
+            lblInfo.Location = new Point(124, 524);
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(0, 20);
             lblInfo.TabIndex = 11;
@@ -441,7 +444,7 @@
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(2, 463);
+            lblStatus.Location = new Point(12, 539);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(55, 20);
             lblStatus.TabIndex = 12;
@@ -450,26 +453,37 @@
             // tbInfo
             // 
             tbInfo.Enabled = false;
-            tbInfo.Location = new Point(63, 460);
+            tbInfo.Location = new Point(12, 562);
             tbInfo.MaxLength = 5;
             tbInfo.Name = "tbInfo";
-            tbInfo.Size = new Size(358, 27);
+            tbInfo.Size = new Size(578, 27);
             tbInfo.TabIndex = 13;
             // 
             // lblTemp
             // 
             lblTemp.AutoSize = true;
-            lblTemp.Location = new Point(7, 9);
+            lblTemp.Location = new Point(540, 9);
             lblTemp.Name = "lblTemp";
             lblTemp.Size = new Size(50, 20);
             lblTemp.TabIndex = 14;
             lblTemp.Text = "label1";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ImageLocation = "D:\\Finki\\8 semestar\\VP\\Proekt\\Zborche\\Zborche\\zborche.png";
+            pictureBox1.Location = new Point(182, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(231, 80);
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            // 
             // Zborche
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(433, 499);
+            BackColor = Color.White;
+            ClientSize = new Size(602, 594);
+            Controls.Add(pictureBox1);
             Controls.Add(lblTemp);
             Controls.Add(tbInfo);
             Controls.Add(lblStatus);
@@ -483,8 +497,9 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(lblGameDesc);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Zborche";
-            Text = "Зборче";
+            Text = "adde";
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
@@ -497,6 +512,7 @@
             groupBox6.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -546,5 +562,6 @@
         private Label lblStatus;
         private TextBox tbInfo;
         private Label lblTemp;
+        private PictureBox pictureBox1;
     }
 }

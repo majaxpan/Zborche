@@ -34,7 +34,7 @@ namespace Zborche
             TryWord = tbTryWord.Text;
             UpdateInfo("");
 
-            if (!checkTryWord(TryWord)) 
+            if (!checkTryWord(TryWord))
             {
                 UpdateInfo("Внесениот збор не постои во листата на зборови.");
             }
@@ -174,9 +174,9 @@ namespace Zborche
 
             if (game.checkColors())
                 GameOver("You won!");
-            else if(NumOfTries == 6 && !game.checkColors())
+            else if (NumOfTries == 6 && !game.checkColors())
                 GameOver("You lost!");
-            
+
         }
 
         private void GameOver(string message)
@@ -202,7 +202,7 @@ namespace Zborche
             o1b5.BackColor = Color.White;
 
             o2b1.BackColor = Color.White;
-            o2b2.BackColor = Color.White;           
+            o2b2.BackColor = Color.White;
             o2b3.BackColor = Color.White;
             o2b4.BackColor = Color.White;
             o2b5.BackColor = Color.White;
