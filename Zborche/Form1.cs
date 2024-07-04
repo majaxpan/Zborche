@@ -34,15 +34,15 @@ namespace Zborche
             TryWord = tbTryWord.Text;
             UpdateInfo("");
 
-            if (!checkTryWord(TryWord))
+            if (!game.checkTryWord(TryWord))
             {
-                UpdateInfo("Внесениот збор не постои во листата на зборови.");
+                UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
             }
             else
             {
                 if (!string.IsNullOrEmpty(TryWord) && TryWord.Length == 5)
                 {
-                    if (IsEnglishAlphabet())
+                    if (game.IsEnglishAlphabet(TryWord))
                     {
                         UpdateInfo("Внесете збор со македонска поддршка!");
                     }
@@ -58,11 +58,6 @@ namespace Zborche
                     UpdateInfo("Внесете збор кој содржи точно 5 букви!");
                 }
             }
-        }
-
-        private bool checkTryWord(string word)
-        {
-            return game.holder.wordsList.Contains(word);
         }
 
         private void FillColors()
@@ -118,6 +113,7 @@ namespace Zborche
 
         private void FillTry()
         {
+            TryWord = TryWord.ToUpper();
             switch (this.NumOfTries)
             {
                 case 1:
@@ -161,28 +157,46 @@ namespace Zborche
                     o6b3.Text = TryWord[2].ToString();
                     o6b4.Text = TryWord[3].ToString();
                     o6b5.Text = TryWord[4].ToString();
-
-                    //game ended, you either won or used all your tries
-                    //gameOver(string message)
-                    //GameOver("");
                     break;
                 default:
                     break;
             }
             FillColors();
             tbTryWord.Text = string.Empty;
+            if(NumOfTries < 5)
+            {
+                UpdateInfo($"Ви преостануваат уште {6 - NumOfTries} обиди.");
+            }
+            else
+            {
+                UpdateInfo($"Ви преостанува уште 1 обид.");
+            }
 
             if (game.checkColors())
-                GameOver("You won!");
+            {
+                if(NumOfTries == 1)
+                {
+                    UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обид.");
+                }
+                else
+                {
+                    UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обиди.");
+                }
+                GameOver("Честитки! Победивте.\n");
+            }
+                
             else if (NumOfTries == 6 && !game.checkColors())
-                GameOver("You lost!");
-
+            {
+                string word = game.gameWord.ToUpper();
+                UpdateInfo($"Бараниот збор беше: {word}.");
+                GameOver($"Изгубивте!\n");
+            }
         }
 
         private void GameOver(string message)
         {
-            message += " Do you want to play again?";
-            DialogResult result = MessageBox.Show(message, "Prompt", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            message += "Дали сакате да играте повторно?";
+            DialogResult result = MessageBox.Show(message, "Крај на играта", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 Init();
@@ -276,11 +290,5 @@ namespace Zborche
             tbInfo.Text = info;
         }
 
-        private bool IsEnglishAlphabet()
-        {
-            // Regular expression to check if the word contains only English letters
-            Regex regex = new Regex("^[a-zA-Z]+$");
-            return regex.IsMatch(TryWord);
-        }
     }
 }

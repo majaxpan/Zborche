@@ -85,11 +85,11 @@
             // lblGameDesc
             // 
             lblGameDesc.AutoSize = true;
-            lblGameDesc.Location = new Point(258, 444);
+            lblGameDesc.Location = new Point(252, 444);
             lblGameDesc.Name = "lblGameDesc";
-            lblGameDesc.Size = new Size(92, 20);
+            lblGameDesc.Size = new Size(108, 20);
             lblGameDesc.TabIndex = 1;
-            lblGameDesc.Text = "Внеси збор:";
+            lblGameDesc.Text = "Внеси зборче:";
             // 
             // o2b2
             // 
@@ -462,7 +462,7 @@
             // lblTemp
             // 
             lblTemp.AutoSize = true;
-            lblTemp.Location = new Point(540, 9);
+            lblTemp.Location = new Point(491, 89);
             lblTemp.Name = "lblTemp";
             lblTemp.Size = new Size(50, 20);
             lblTemp.TabIndex = 14;

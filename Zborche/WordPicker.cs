@@ -14,9 +14,9 @@ namespace Zborche
         {
         }
 
-        public string pickWord(List<string> list)
+        public string pickWord(HashSet<string> set)
         {
-            return list.ElementAt(random.Next(0, list.Count));
+            return set.ElementAt(random.Next(0, set.Count));
         }
     }
 }
