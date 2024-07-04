@@ -499,7 +499,7 @@
             Controls.Add(lblGameDesc);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Zborche";
-            Text = "adde";
+            Text = "Зборче";
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
