@@ -10,14 +10,18 @@ namespace Zborche
 
         public Game game { get; set; }
 
+        public string mode { get; set; }
+
         public Zborche()
         {
             InitializeComponent();
             Init();
+            
         }
 
         public void Init()
         {
+            CheckModeSelection();
             game = new Game();
             NumOfTries = 0;
             TryWord = string.Empty;
@@ -29,12 +33,23 @@ namespace Zborche
             lblTemp.Text = game.gameWord;
         }
 
+        private void CheckModeSelection()
+        {
+            using (var modeForm = new ModeSelectionForm())
+            {
+                if (modeForm.ShowDialog() == DialogResult.OK)
+                {
+                    mode = modeForm.gameMode;
+                }
+            }
+        }
+
         private void Submit_Click(object sender, EventArgs e)
         {
             TryWord = tbTryWord.Text;
             UpdateInfo("");
 
-            if (!game.checkTryWord(TryWord))
+            if (!game.validateTryWord(TryWord, this.mode))
             {
                 UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
             }
@@ -163,7 +178,7 @@ namespace Zborche
             }
             FillColors();
             tbTryWord.Text = string.Empty;
-            if(NumOfTries < 5)
+            if (NumOfTries < 5)
             {
                 UpdateInfo($"Ви преостануваат уште {6 - NumOfTries} обиди.");
             }
@@ -174,7 +189,7 @@ namespace Zborche
 
             if (game.checkColors())
             {
-                if(NumOfTries == 1)
+                if (NumOfTries == 1)
                 {
                     UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обид.");
                 }
@@ -184,7 +199,7 @@ namespace Zborche
                 }
                 GameOver("Честитки! Победивте.\n");
             }
-                
+
             else if (NumOfTries == 6 && !game.checkColors())
             {
                 string word = game.gameWord.ToUpper();

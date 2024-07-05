@@ -83,6 +83,55 @@ namespace Zborche
             return flag == 5;
         }
 
+        private bool easyValidate(string word)
+        {
+            foreach (char c in word)
+            {
+                if (!char.IsLetter(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool mediumValidate(string word)
+        {
+            for (int i = 0; i <= word.Length - 3; i++)
+            {
+                //ги земаме буквата на позиција i, и буквите на следните 2 позиции
+                char currentChar = word[i];
+                char nextChar1 = word[i + 1];
+                char nextChar2 = word[i + 2];
+
+                //проверуваме дали 3те карактери се исти
+                if (currentChar == nextChar1 && nextChar1 == nextChar2)
+                {
+                    //Ако постои таков случај, враќа погрешно
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool validateTryWord(string word, string mode)
+        {
+            word = word.ToLower();
+            if (mode.ToLower() == "easy")
+            {
+                return easyValidate(word);
+            }
+            else if (mode.ToLower() == "medium")
+            {
+                return easyValidate(word) && mediumValidate(word);
+            }
+            else if (mode.ToLower() == "hard")
+            {
+                return easyValidate(word) && holder.wordsSet.Contains(word);
+            }
+            return false;
+        }
+
         public bool checkTryWord(string word)
         {
             //првичниот план ми беше да се внесуваат зборови 
@@ -95,6 +144,16 @@ namespace Zborche
             //и да се осигурам дека нема да се внесуваат исти букви повеќе пати со цел да се осигура позиција, 
             //правам проверка дали одредена буква 3 пати со ред се повторува
             string lowerCaseWord = word.ToLower();
+
+            //Проверка дали се внесуваат само карактери
+            //да не се дозволи внесување на специјални знаци
+            foreach (char c in lowerCaseWord)
+            {
+                if (!char.IsLetter(c))
+                {
+                    return false;
+                }
+            }
 
             //Проверка дали одредена буква се појавува 3 пати со ред
             for (int i = 0; i <= lowerCaseWord.Length - 3; i++)

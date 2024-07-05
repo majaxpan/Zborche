@@ -470,7 +470,9 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.ImageLocation = "D:\\Finki\\8 semestar\\VP\\Proekt\\Zborche\\Zborche\\zborche.png";
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.zborche;
+            pictureBox1.ImageLocation = "";
             pictureBox1.Location = new Point(182, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(231, 80);
