@@ -41,6 +41,10 @@ namespace Zborche
                 {
                     mode = modeForm.gameMode;
                 }
+                else
+                {
+                    mode = "easy";
+                }
             }
         }
 
@@ -51,7 +55,9 @@ namespace Zborche
 
             if (!game.validateTryWord(TryWord, this.mode))
             {
-                UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
+                if(mode.ToLower() == "hard")
+                    UpdateInfo("Внесениот збор не постои во листата со зборови.");
+                else UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
             }
             else
             {

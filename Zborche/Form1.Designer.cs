@@ -73,6 +73,10 @@
             tbInfo = new TextBox();
             lblTemp = new Label();
             pictureBox1 = new PictureBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            groupBox7 = new GroupBox();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -80,12 +84,13 @@
             groupBox6.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox7.SuspendLayout();
             SuspendLayout();
             // 
             // lblGameDesc
             // 
             lblGameDesc.AutoSize = true;
-            lblGameDesc.Location = new Point(252, 444);
+            lblGameDesc.Location = new Point(223, 444);
             lblGameDesc.Name = "lblGameDesc";
             lblGameDesc.Size = new Size(108, 20);
             lblGameDesc.TabIndex = 1;
@@ -138,7 +143,7 @@
             groupBox2.Controls.Add(o2b3);
             groupBox2.Controls.Add(o2b1);
             groupBox2.Controls.Add(o2b2);
-            groupBox2.Location = new Point(211, 158);
+            groupBox2.Location = new Point(182, 158);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(192, 51);
             groupBox2.TabIndex = 7;
@@ -192,7 +197,7 @@
             groupBox3.Controls.Add(o3b3);
             groupBox3.Controls.Add(o3b1);
             groupBox3.Controls.Add(o3b2);
-            groupBox3.Location = new Point(211, 215);
+            groupBox3.Location = new Point(182, 215);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(192, 51);
             groupBox3.TabIndex = 7;
@@ -246,7 +251,7 @@
             groupBox4.Controls.Add(o4b3);
             groupBox4.Controls.Add(o4b1);
             groupBox4.Controls.Add(o4b2);
-            groupBox4.Location = new Point(211, 272);
+            groupBox4.Location = new Point(182, 272);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(192, 51);
             groupBox4.TabIndex = 7;
@@ -300,7 +305,7 @@
             groupBox5.Controls.Add(o5b3);
             groupBox5.Controls.Add(o5b1);
             groupBox5.Controls.Add(o5b2);
-            groupBox5.Location = new Point(211, 329);
+            groupBox5.Location = new Point(182, 329);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(192, 51);
             groupBox5.TabIndex = 7;
@@ -354,7 +359,7 @@
             groupBox6.Controls.Add(o6b3);
             groupBox6.Controls.Add(o6b1);
             groupBox6.Controls.Add(o6b2);
-            groupBox6.Location = new Point(211, 386);
+            groupBox6.Location = new Point(182, 386);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(192, 51);
             groupBox6.TabIndex = 7;
@@ -363,7 +368,7 @@
             // 
             // submit
             // 
-            submit.Location = new Point(240, 500);
+            submit.Location = new Point(211, 500);
             submit.Name = "submit";
             submit.Size = new Size(136, 33);
             submit.TabIndex = 8;
@@ -418,7 +423,7 @@
             groupBox1.Controls.Add(o1b3);
             groupBox1.Controls.Add(o1b1);
             groupBox1.Controls.Add(o1b2);
-            groupBox1.Location = new Point(211, 101);
+            groupBox1.Location = new Point(182, 101);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(192, 51);
             groupBox1.TabIndex = 6;
@@ -427,7 +432,7 @@
             // 
             // tbTryWord
             // 
-            tbTryWord.Location = new Point(240, 467);
+            tbTryWord.Location = new Point(211, 467);
             tbTryWord.MaxLength = 5;
             tbTryWord.Name = "tbTryWord";
             tbTryWord.Size = new Size(136, 27);
@@ -444,7 +449,7 @@
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(12, 539);
+            lblStatus.Location = new Point(251, 536);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(55, 20);
             lblStatus.TabIndex = 12;
@@ -453,16 +458,16 @@
             // tbInfo
             // 
             tbInfo.Enabled = false;
-            tbInfo.Location = new Point(12, 562);
+            tbInfo.Location = new Point(57, 559);
             tbInfo.MaxLength = 5;
             tbInfo.Name = "tbInfo";
-            tbInfo.Size = new Size(578, 27);
+            tbInfo.Size = new Size(452, 27);
             tbInfo.TabIndex = 13;
             // 
             // lblTemp
             // 
             lblTemp.AutoSize = true;
-            lblTemp.Location = new Point(491, 89);
+            lblTemp.Location = new Point(36, 72);
             lblTemp.Name = "lblTemp";
             lblTemp.Size = new Size(50, 20);
             lblTemp.TabIndex = 14;
@@ -471,20 +476,60 @@
             // pictureBox1
             // 
             pictureBox1.ErrorImage = null;
-            pictureBox1.Image = Properties.Resources.zborche;
+            pictureBox1.Image = Zborche.Properties.Resources.zborche;
             pictureBox1.ImageLocation = "";
-            pictureBox1.Location = new Point(182, 12);
+            pictureBox1.Location = new Point(153, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(231, 80);
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(15, 26);
+            label2.Name = "label2";
+            label2.Size = new Size(335, 20);
+            label2.TabIndex = 17;
+            label2.Text = "1. Зелено поле: точна буква на точна позиција";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(360, 20);
+            label3.TabIndex = 18;
+            label3.Text = "2. Жолто поле: точна буква на погрешна позиција";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 66);
+            label4.Name = "label4";
+            label4.Size = new Size(264, 20);
+            label4.TabIndex = 19;
+            label4.Text = "3. Сиво поле: буквата не е во зборот";
+            // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(label4);
+            groupBox7.Controls.Add(label3);
+            groupBox7.Controls.Add(label2);
+            groupBox7.Location = new Point(57, 592);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(452, 105);
+            groupBox7.TabIndex = 20;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Правила:";
             // 
             // Zborche
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(602, 594);
+            ClientSize = new Size(575, 711);
+            Controls.Add(groupBox7);
             Controls.Add(pictureBox1);
             Controls.Add(lblTemp);
             Controls.Add(tbInfo);
@@ -515,6 +560,8 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -565,5 +612,9 @@
         private TextBox tbInfo;
         private Label lblTemp;
         private PictureBox pictureBox1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private GroupBox groupBox7;
     }
 }

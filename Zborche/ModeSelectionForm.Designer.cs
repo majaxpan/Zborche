@@ -42,6 +42,7 @@
             // rbEasy
             // 
             rbEasy.AutoSize = true;
+            rbEasy.Checked = true;
             rbEasy.Location = new Point(23, 24);
             rbEasy.Name = "rbEasy";
             rbEasy.Size = new Size(71, 24);
@@ -57,7 +58,6 @@
             rbMedium.Name = "rbMedium";
             rbMedium.Size = new Size(80, 24);
             rbMedium.TabIndex = 1;
-            rbMedium.TabStop = true;
             rbMedium.Text = "средно";
             rbMedium.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,6 @@
             rbHard.Name = "rbHard";
             rbHard.Size = new Size(72, 24);
             rbHard.TabIndex = 2;
-            rbHard.TabStop = true;
             rbHard.Text = "тешко";
             rbHard.UseVisualStyleBackColor = true;
             // 
