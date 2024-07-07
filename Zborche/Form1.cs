@@ -28,8 +28,6 @@ namespace Zborche
             UpdateInfo("");
             ClearAllTryLetters();
             clearBackColor();
-            //for testing purpose only
-            lblTemp.Text = game.gameWord;
         }
 
         //поставување на режим
