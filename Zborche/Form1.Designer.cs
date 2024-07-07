@@ -77,6 +77,7 @@
             label3 = new Label();
             label4 = new Label();
             groupBox7 = new GroupBox();
+            label1 = new Label();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -512,22 +513,32 @@
             // 
             // groupBox7
             // 
+            groupBox7.Controls.Add(label1);
             groupBox7.Controls.Add(label4);
             groupBox7.Controls.Add(label3);
             groupBox7.Controls.Add(label2);
             groupBox7.Location = new Point(57, 592);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(452, 105);
+            groupBox7.Size = new Size(452, 122);
             groupBox7.TabIndex = 20;
             groupBox7.TabStop = false;
             groupBox7.Text = "Правила:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 86);
+            label1.Name = "label1";
+            label1.Size = new Size(376, 20);
+            label1.TabIndex = 20;
+            label1.Text = "4. Плаво поле: повеќе појавувања на други позиции";
             // 
             // Zborche
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(575, 711);
+            ClientSize = new Size(575, 726);
             Controls.Add(groupBox7);
             Controls.Add(pictureBox1);
             Controls.Add(lblTemp);
@@ -615,5 +626,6 @@
         private Label label3;
         private Label label4;
         private GroupBox groupBox7;
+        private Label label1;
     }
 }

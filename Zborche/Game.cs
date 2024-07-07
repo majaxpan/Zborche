@@ -37,7 +37,7 @@ namespace Zborche
             bool[] matched = new bool[gameWord.Length];
             Dictionary<char, int> letterCount = new Dictionary<char, int>();
 
-            // проверка на бројот на појавувања на буквите
+            //броење на појавувања за секоја буква во избраниот збор
             foreach (char c in gameWord)
             {
                 if (letterCount.ContainsKey(c))
@@ -77,21 +77,47 @@ namespace Zborche
                     continue; // Прескокни ги зелените букви (точните букви на точна позиција)
                 }
 
-                for (int j = 0; j < gameWord.Length; j++)
+                if (letterCount.ContainsKey(tryWord[i]) && letterCount[tryWord[i]] > 0)
                 {
-                    if (!matched[j] && tryWord[i] == gameWord[j])
+                    int tryLetterCount = tryWord.Count(c => c == tryWord[i]);
+                    int gameLetterCount = gameWord.Count(c => c == tryWord[i]);
+
+                    if (tryLetterCount > 1 && gameLetterCount > 1)
                     {
-                        if (letterCount[tryWord[i]] > 1)
-                        {
-                            colors[i] = Color.LightBlue; // Повеќе појавувања но на погрешна позиција
-                            letterCount[tryWord[i]]--;
-                        }
-                        else
-                        {
-                            colors[i] = Color.LightYellow;
-                        }
-                        matched[j] = true;
-                        break;
+                        colors[i] = Color.LightYellow; // повеќе појавувања во tryWord и gameWord на буква
+                        letterCount[tryWord[i]]--; 
+                    }
+                    else if (tryLetterCount == 1 && gameLetterCount > 1)
+                    {
+                        colors[i] = Color.LightBlue; // повеќе појавувања во gameWord но едно појавување во tryWord на буква
+                        letterCount[tryWord[i]]--; 
+                    }
+                    else
+                    {
+                        colors[i] = Color.LightYellow;
+                        letterCount[tryWord[i]]--; 
+                    }
+                }
+                else
+                {
+                    colors[i] = Color.LightGray;
+                }
+            }
+
+            //повеќе појавувања на една буква во tryWord, а се среќава во помалку појавувања во game word
+            Dictionary<char, int> tryWordLetterCount = new Dictionary<char, int>();
+            for (int i = 0; i < tryWord.Length; i++)
+            {
+                if (!tryWordLetterCount.ContainsKey(tryWord[i]))
+                {
+                    tryWordLetterCount[tryWord[i]] = 1;
+                }
+                else
+                {
+                    tryWordLetterCount[tryWord[i]]++;
+                    if (tryWordLetterCount[tryWord[i]] > gameWord.Count(c => c == tryWord[i]))
+                    {
+                        colors[i] = Color.LightGray; // повеќе појавувања во tryWord отколку во gameWord
                     }
                 }
             }

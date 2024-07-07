@@ -16,7 +16,6 @@ namespace Zborche
         {
             InitializeComponent();
             Init();
-            
         }
 
         public void Init()
