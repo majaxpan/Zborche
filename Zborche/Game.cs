@@ -35,16 +35,31 @@ namespace Zborche
         public void checkWord(string tryWord)
         {
             bool[] matched = new bool[gameWord.Length];
+            Dictionary<char, int> letterCount = new Dictionary<char, int>();
 
-            //Прва проверка
-            //точна буква и точна позиција
-            //ги маркира и обојува
+            // проверка на бројот на појавувања на буквите
+            foreach (char c in gameWord)
+            {
+                if (letterCount.ContainsKey(c))
+                {
+                    letterCount[c]++;
+                }
+                else
+                {
+                    letterCount[c] = 1;
+                }
+            }
+
+            // Прва проверка
+            // точна буква и точна позиција
+            // ги маркира и обојува
             for (int i = 0; i < colors.Length; i++)
             {
                 if (tryWord[i] == gameWord[i])
                 {
                     colors[i] = Color.LightGreen;
                     matched[i] = true;
+                    letterCount[tryWord[i]]--;
                 }
                 else
                 {
@@ -52,28 +67,35 @@ namespace Zborche
                 }
             }
 
-            //Втора проверка
-            //точна буква и погрешна позиција
-            //споредува со преостанатите
+            // Втора проверка
+            // точна буква и погрешна позиција
+            // споредува со преостанатите
             for (int i = 0; i < colors.Length; i++)
             {
                 if (colors[i] == Color.LightGreen)
                 {
-                    continue; //Прескокни ги зелените букви (точните букви на точна позиција)
+                    continue; // Прескокни ги зелените букви (точните букви на точна позиција)
                 }
 
                 for (int j = 0; j < gameWord.Length; j++)
                 {
                     if (!matched[j] && tryWord[i] == gameWord[j])
                     {
-                        colors[i] = Color.LightYellow;
+                        if (letterCount[tryWord[i]] > 1)
+                        {
+                            colors[i] = Color.LightBlue; // Повеќе појавувања но на погрешна позиција
+                            letterCount[tryWord[i]]--;
+                        }
+                        else
+                        {
+                            colors[i] = Color.LightYellow;
+                        }
                         matched[j] = true;
                         break;
                     }
                 }
             }
         }
-
 
         //метод кој се повикува
         //кога се врши проверка 
