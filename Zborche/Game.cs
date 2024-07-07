@@ -29,6 +29,9 @@ namespace Zborche
             }
         }
 
+        //главната логика во играта
+        //која одредува дали внесените букви во зборот
+        //се среќаваат во зборот селектиран од играта
         public void checkWord(string tryWord)
         {
             bool[] matched = new bool[gameWord.Length];
@@ -72,6 +75,9 @@ namespace Zborche
         }
 
 
+        //метод кој се повикува
+        //кога се врши проверка 
+        //дали е погоден зборот
         public bool checkColors()
         {
             int flag = 0;
@@ -83,6 +89,8 @@ namespace Zborche
             return flag == 5;
         }
 
+
+        //проверка дали сите внесени карактери се всушност букви
         private bool easyValidate(string word)
         {
             foreach (char c in word)
@@ -95,6 +103,9 @@ namespace Zborche
             return true;
         }
 
+        //проверка дали играчот се обидува да одреди 
+        //на која точно позиција се наоѓа одредена буква
+        //притоа внесувајќи ја само истата на сите позиции
         private bool mediumValidate(string word)
         {
             for (int i = 0; i <= word.Length - 3; i++)
@@ -114,6 +125,8 @@ namespace Zborche
             return true;
         }
 
+        //проверка на зборот според избран режим 
+        //и валидација дека се внесени само букви
         public bool validateTryWord(string word, string mode)
         {
             word = word.ToLower();
@@ -127,54 +140,15 @@ namespace Zborche
             }
             else if (mode.ToLower() == "hard")
             {
+                //во тежок режим, за да се погоди зборот
+                //играчот може да внесува само зборови кои се наоѓаат во листата
                 return easyValidate(word) && holder.wordsSet.Contains(word);
             }
             return false;
         }
 
-        public bool checkTryWord(string word)
-        {
-            //првичниот план ми беше да се внесуваат зборови 
-            //кои ги има во играта со цел да не се трошат обиди
-            //меѓутоа во тој случај многу е ограничен влезот 
-
-            //return holder.wordsSet.Contains(word);
-
-            //поради некои граматички правила, за да направам валидација
-            //и да се осигурам дека нема да се внесуваат исти букви повеќе пати со цел да се осигура позиција, 
-            //правам проверка дали одредена буква 3 пати со ред се повторува
-            string lowerCaseWord = word.ToLower();
-
-            //Проверка дали се внесуваат само карактери
-            //да не се дозволи внесување на специјални знаци
-            foreach (char c in lowerCaseWord)
-            {
-                if (!char.IsLetter(c))
-                {
-                    return false;
-                }
-            }
-
-            //Проверка дали одредена буква се појавува 3 пати со ред
-            for (int i = 0; i <= lowerCaseWord.Length - 3; i++)
-            {
-                //ги земаме буквата на позиција i, и буквите на следните 2 позиции
-                char currentChar = lowerCaseWord[i];
-                char nextChar1 = lowerCaseWord[i + 1];
-                char nextChar2 = lowerCaseWord[i + 2];
-
-                //проверуваме дали 3те карактери се исти
-                if (currentChar == nextChar1 && nextChar1 == nextChar2)
-                {
-                    //Ако постои таков случај, враќа погрешно
-                    return false;
-                }
-            }
-
-            //Доколку нема 3 исти букви со ред, се враќа точно
-            return true;
-        }
-
+        //проверка дали внесениот збор
+        //е внесен со латинични симболи
         public bool IsEnglishAlphabet(string word)
         {
             //Проверка дали внесените букви се латинични?

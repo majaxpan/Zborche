@@ -33,6 +33,8 @@ namespace Zborche
             lblTemp.Text = game.gameWord;
         }
 
+        //поставување на режим
+        //според изборот во првата форма
         private void CheckModeSelection()
         {
             using (var modeForm = new ModeSelectionForm())
@@ -52,32 +54,32 @@ namespace Zborche
         {
             TryWord = tbTryWord.Text;
             UpdateInfo("");
+            EmptyTryWord();
 
-            if (!game.validateTryWord(TryWord, this.mode))
+            //валидација дали е внесен соодветен збор од корисникот
+            if (!string.IsNullOrEmpty(TryWord) && TryWord.Length == 5)
             {
-                if(mode.ToLower() == "hard")
-                    UpdateInfo("Внесениот збор не постои во листата со зборови.");
-                else UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(TryWord) && TryWord.Length == 5)
+                if (game.IsEnglishAlphabet(TryWord))
                 {
-                    if (game.IsEnglishAlphabet(TryWord))
-                    {
-                        UpdateInfo("Внесете збор со македонска поддршка!");
-                    }
-                    else
-                    {
-                        NumOfTries++;
-                        game.checkWord(TryWord);
-                        FillTry();
-                    }
+                    UpdateInfo("Внесете збор со македонска поддршка!");
+                }
+                //валидација според одбраниот режим
+                else if (!game.validateTryWord(TryWord, this.mode))
+                {
+                    if (mode.ToLower() == "hard")
+                        UpdateInfo("Внесениот збор не постои во листата со зборови.");
+                    else UpdateInfo("Обидот не се прифаќа. Обидете се повторно!");
                 }
                 else
                 {
-                    UpdateInfo("Внесете збор кој содржи точно 5 букви!");
+                    NumOfTries++;
+                    game.checkWord(TryWord);
+                    FillTry();
                 }
+            }
+            else
+            {
+                UpdateInfo("Внесете збор кој содржи точно 5 букви!");
             }
         }
 
@@ -132,6 +134,8 @@ namespace Zborche
             }
         }
 
+        //метод кој го пополнува обидот доколку 
+        //внесениот збор ги поминал сите валидации
         private void FillTry()
         {
             TryWord = TryWord.ToUpper();
@@ -182,8 +186,30 @@ namespace Zborche
                 default:
                     break;
             }
+            //поставување соодветни бои
             FillColors();
-            tbTryWord.Text = string.Empty;
+            EmptyTryWord();
+
+            //известување кон играчот
+            statusUpdate();
+
+            //проверка дали играчот победил
+            if (Won())
+            {
+                ifWon();
+            }
+
+            //проверка дали играчот изгубил
+            else if (Lost())
+            {
+                ifLost();
+            }
+        }
+
+        private void statusUpdate()
+        {
+            //метод за потсетување на корисникот
+            //уште колку обиди му преостануваат
             if (NumOfTries < 5)
             {
                 UpdateInfo($"Ви преостануваат уште {6 - NumOfTries} обиди.");
@@ -192,28 +218,50 @@ namespace Zborche
             {
                 UpdateInfo($"Ви преостанува уште 1 обид.");
             }
-
-            if (game.checkColors())
-            {
-                if (NumOfTries == 1)
-                {
-                    UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обид.");
-                }
-                else
-                {
-                    UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обиди.");
-                }
-                GameOver("Честитки! Победивте.\n");
-            }
-
-            else if (NumOfTries == 6 && !game.checkColors())
-            {
-                string word = game.gameWord.ToUpper();
-                UpdateInfo($"Бараниот збор беше: {word}.");
-                GameOver($"Изгубивте!\n");
-            }
         }
 
+        private bool Lost()
+        {
+            //доколку се искористил и последниот (6) обид,
+            //а не се погодил зборот 
+            //(зборот е погоден кога сите полиња се зелени)
+            //играчот губи
+            return NumOfTries == 6 && !game.checkColors();
+        }
+        private bool Won()
+        {
+            //доколку сите полиња се зелени
+            //играчот победува
+            return game.checkColors();
+        }
+
+        private void ifLost()
+        {
+            //ако изгуби играчот
+            //се испишува бараниот збор
+            //и се повикува методот за крај на играта
+            string word = game.gameWord.ToUpper();
+            UpdateInfo($"Бараниот збор беше: {word}.");
+            GameOver($"Изгубивте!\n");
+        }
+
+        private void ifWon()
+        {
+            //доколку играчот победи
+            //се известува во колку обиди го открил зборот
+            //и се повикува методот за крај на игра, со порака за честитки
+            if (NumOfTries == 1)
+            {
+                UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обид.");
+            }
+            else
+            {
+                UpdateInfo($"Браво. Го погодивте зборот во {NumOfTries} обиди.");
+            }
+            GameOver("Честитки! Победивте.\n");
+        }
+
+        //метод кој нуди нова игра или излегува од играта
         private void GameOver(string message)
         {
             message += "Дали сакате да играте повторно?";
@@ -228,6 +276,7 @@ namespace Zborche
             }
         }
 
+        //метод кој ја чисти бојата на полињата за сите обиди
         private void clearBackColor()
         {
             o1b1.BackColor = Color.White;
@@ -267,6 +316,7 @@ namespace Zborche
             o6b5.BackColor = Color.White;
         }
 
+        //метод кој ги чисти полињата за сите обиди
         private void ClearAllTryLetters()
         {
             o1b1.Text = " ";
@@ -311,5 +361,9 @@ namespace Zborche
             tbInfo.Text = info;
         }
 
+        private void EmptyTryWord()
+        {
+            tbTryWord.Text = string.Empty;
+        }
     }
 }

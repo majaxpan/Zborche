@@ -33,6 +33,10 @@ namespace Zborche
             {
                 gameMode = "Hard";
             }
+            else
+            {
+                gameMode = "easy";
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
